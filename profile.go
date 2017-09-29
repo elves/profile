@@ -11,13 +11,6 @@ import (
 	"github.com/elves/elvish/parse"
 )
 
-var sources = map[string]string{
-	"0":   "range 5000000 | each [_]{ }",
-	"1":   "range 5000000 | each [_]{ nop }",
-	"2":   "range 5000000 | each $&nop",
-	"for": "for x [(range 1000)] { for y [(range 1000)] { } }",
-}
-
 func assertOK(err error) {
 	if err != nil {
 		log.Fatal(err)

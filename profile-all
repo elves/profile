@@ -1,8 +1,8 @@
 #!/usr/bin/env elvish
-go build p.go
-./p *.elv
+go build profile.go
+./profile *.elv
 for x [*.elv.prof] {
-    go tool pprof -pdf ./p $x > $x.pdf
+    go tool pprof -pdf ./profile $x > $x.pdf
 }
 {
     echo '<html>'
