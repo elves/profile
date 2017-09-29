@@ -1,0 +1,17 @@
+#!/usr/bin/env elvish
+go build p.go
+./p *.elv
+for x [*.elv.prof] {
+    go tool pprof -pdf ./p $x > $x.pdf
+}
+{
+    echo '<html>'
+    for x [*.elv] {
+        echo '<h1>'$x'</h1>'
+        echo '<pre>'
+        cat $x
+        echo '</pre>'
+        echo '<a href="'$x.prof.pdf'">prof</a>'
+    }
+    echo '</html>'
+} > index.html
