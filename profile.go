@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"runtime/pprof"
+	"time"
 
 	"github.com/elves/elvish/daemon/api"
 	"github.com/elves/elvish/eval"
@@ -30,7 +31,12 @@ func profile(name string) {
 	op, err := ev.Compile(ast, name, source)
 
 	pprof.StartCPUProfile(profileFile)
+	log.Println("starting to profile", name)
+	start := time.Now()
 	defer pprof.StopCPUProfile()
+	defer func() {
+		log.Printf("finished profiling %s (%s)", name, time.Now().Sub(start))
+	}()
 	ev.Eval(op, name, source)
 }
 

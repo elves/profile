@@ -6,6 +6,9 @@ for x [*.elv.prof] {
 }
 {
     echo '<html>'
+    echo '<pre>'
+    elvish -version
+    echo '</pre>'
     for x [*.elv] {
         echo '<h1>'$x'</h1>'
         echo '<pre>'
